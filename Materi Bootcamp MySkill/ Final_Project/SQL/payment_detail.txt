@@ -1,8 +1,8 @@
-CREATE TABLE IF NOT EXISTS payment_detail (
-      "id" INT,
-	"payment_method" TEXT
+CREATE TABLE  `Final_project.payment_detail` (
+      id INT,
+	payment_method TEXT
 );
-INSERT INTO payment_detail VALUES
+INSERT INTO `Final_project.payment_detail` VALUES
 (1,'cod'),
 (2,'jazzvoucher'),
 (3,'customercredit'),

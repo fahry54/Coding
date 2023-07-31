@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS sku_detail (
-    "id" TEXT,
-    "sku_name" TEXT,
-    "base_price" FLOAT,
-    "cogs" FLOAT,
-    "category" TEXT
+CREATE TABLE `Final_project.sku_detail` (
+    id string,
+    sku_name string,
+    base_price FLOAT,
+    cogs FLOAT,
+    category string
 );
-INSERT INTO sku_detail VALUES
+INSERT INTO `Final_project.sku_detail` VALUES
 ('P798444','AT-FSM-35',57631.7,46052,'Kids & Baby'),
 ('P938347','AYS_Haier-18HNF',3931789.26,3499256,'Appliances'),
 ('P826364','Atalian _DV206A-Brown-41',324597,243426,'Men Fashion'),

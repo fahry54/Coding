@@ -1,19 +1,19 @@
-CREATE TABLE IF NOT EXISTS order_detail (
-    "id" TEXT,
-    "customer_id" TEXT,
-    "order_date" DATE,
-    "sku_id" TEXT,
-    "price" INT,
-    "qty_ordered" INT,
-    "before_discount" FLOAT,
-    "discount_amount" FLOAT,
-    "after_discount" FLOAT,
-    "is_gross" INT,
-    "is_valid" INT,
-    "is_net" INT,
-    "payment_id" INT
+CREATE TABLE `Final_project.order_detail` (
+    id TEXT,
+    customer_id TEXT,
+    order_date DATE,
+    sku_id TEXT,
+    price INT,
+    qty_ordered INT,
+    before_discount FLOAT,
+    discount_amount FLOAT,
+    after_discount FLOAT,
+    is_gross INT,
+    is_valid INT,
+    is_net INT,
+    payment_id INT
 );
-INSERT INTO order_detail VALUES
+INSERT INTO `Final_project.order_detail` VALUES
 ('ODR9939707760w','C713589L','2021-11-19 00:00:00','P858068',26100,200,5220000,2610000,2610000,1,1,0,5),
 ('ODR7448356649d','C551551L','2021-11-19 00:00:00','P886455',1971942,5,9859710,2464927.5,7394782.5,1,0,0,5),
 ('ODR4011281866z','C685596L','2021-11-25 00:00:00','P678648',7482000,1,7482000,2065344.62,5416655.38,1,0,0,4),
