@@ -3,7 +3,7 @@ import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
 # Baca dataset https://storage.googleapis.com/dqlab-dataset/retail_raw_reduced.csv
-dataset = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/retail_raw_reduced.csv')
+dataset = pd.read_csv('retail_raw_reduced.csv')
 # Buat kolom order_month
 dataset['order_month'] = dataset['order_date'].apply(lambda x: datetime.datetime.strptime(x, "%Y-%m-%d").strftime('%Y-%m'))
 # Buat kolom gmv
