@@ -1,0 +1,101 @@
+-- LIMIT -> digunakan untuk membatasi dalam menampilkan row
+-- Kenapa pakai limit? membatasi bandwidth -> pricing di cloud berdasarkan bandwidth data
+
+select * from `tokopaedi.orders`
+
+select * from `tokopaedi.orders` limit 10
+
+-- Saat kapan kita menggunakan limit?
+-- Kita hanya memerlukan contoh data
+-- contoh: kita punya data log -> daripada kita menampilkan data log secara keseluruhan
+-- instead, ambil sample 10, 15
+
+-- BETWEEN -> di antara
+-- query semua baris transaksi yang berada di tahun 2018
+-- tahun 2018 = dari 1 januari 2018 hingga 30 des 2018
+-- >= <=
+
+select * from `tokopaedi.orders` where order_date >= '2018-01-01' and order_date <= '2018-12-30'
+
+-- ekivalen dengan
+
+select * from `tokopaedi.orders` where order_date between '2018-01-01' and '2018-12-30'
+
+-- between berlaku untuk: angka (integer, float), tanggal, string/teks (lexicogrammatical)
+-- urutannya seperti di kamus (diurutkan berdasarkan abjad)
+
+-- tampilkan semua transaksi dari orang yang namanya berasal dari A sampai E
+select * from `tokopaedi.orders` where customer_name between 'Anna' and 'Zelda'
+
+-- query transaksi yang terjadi selama bulan maret sampai mei 2019 -> (2019-03-01 and 2019-05-31)
+
+-- mengekstraksi tanggal, bulan, tahun dari DATE menggunakan EXTRACT
+
+-- mengambil tahun
+select order_date, extract(YEAR from order_date) from `tokopaedi.orders` limit 10
+
+-- mengambil bulan
+select order_date, extract(month from order_date) from `tokopaedi.orders` limit 10
+
+-- mengambil tanggal
+select order_date, extract(day from order_date) from `tokopaedi.orders` limit 10
+
+-- query semua row yang berasal dari tahun 2017 hingga 2018
+select * from `tokopaedi.orders` where extract(year from order_date) between 2017 and 2018
+
+-- Mengurutkan data -> order by -> 2 menaik dan menurun
+-- urutkan transaksi sehingga menampilkan barisan yang paling baru
+
+-- by default, order by akan diurutkan secara ASCENDING
+
+select * from `tokopaedi.orders` order by order_date
+
+-- tambahkan DESC setelah nama kolom
+select * from `tokopaedi.orders` order by order_date DESC\
+
+-- urutkan transaksi mulai dari yang nominal penjualannya terbesar
+SELECT * FROM `tokopaedi.orders` ORDER BY sales DESC
+
+-- 10 baris dengan kerugian terbesar
+select * from `tokopaedi.orders` order by profit -- 9994
+select * from `tokopaedi.orders` where profit < 0 order by profit -- 1871
+
+select * from `tokopaedi.orders` where profit <= 0 order by profit ASC limit 10
+
+-- PREFIX -> awalan ->menunjukkan tabel
+
+-- ALIAS -> nama samaran (mengganti nama kolom, mengganti nama subquery)
+
+-- Cillian Murphy AS Oppenheimer
+
+select
+  order_date tanggal_order,
+  extract(YEAR from order_date) tahun_order
+from `tokopaedi.orders`
+limit 10
+
+-- kak bukannya ganti nama kolom menggunakan alter column?
+
+-- ORDER BY -> multiple column multiple direction
+select
+  *
+from
+  `tokopaedi.orders`
+order by
+  order_date asc, customer_name asc
+
+select
+  *
+from
+  `tokopaedi.orders`
+order by
+  order_date asc, customer_name desc
+
+-- Hafizh
+select
+  *,
+  extract(year from order_date) as tahun
+from `tokopaedi.orders`
+where
+  tahun between 2017 and 2018
+order by tahun

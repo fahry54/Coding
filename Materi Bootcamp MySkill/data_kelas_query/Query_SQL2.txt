@@ -1,0 +1,135 @@
+-- Buat database tokopaedi (sqliteonlie tidak usah buat database)
+-- klik kanan pada tokopaedi -> query tool
+-- eksekusi kode yang sudah diberikan
+
+-- KHUSUS UNTUK BINARY PATH YANG KOSONG
+
+-- UNTUK MENAMPILKAN TABEL GUNAKAN SELECT
+
+-- MENAMPILAKAN SEMUA KOLOM, GUNAKAN *
+select * from orders
+
+-- Memilih hanya sebagian kolom
+-- panggil nama kolomnya pisahkan dengan koma
+
+select
+	customer_id,
+	product_id
+from
+	orders
+	
+select
+	segment
+from
+	orders
+
+-- SELECT DISTINCT -> distinct = berbeda-beda
+select
+	distinct segment
+from
+	orders
+
+-- Ada category apa saja?
+select
+	distinct category
+from
+	orders
+
+-- ada subcategory apa saja?
+select
+	distinct subcategory
+from
+	orders
+	
+-- ada ship mode apa aja?
+select
+	distinct ship_mode
+from
+	orders
+
+-- Akan menampilkan kombinasi berbeda dari 3 kolom tersebut
+select
+	distinct category, subcategory, ship_mode
+from
+	orders
+
+-- WHERE? dimana -> kondisional untuk memfilter
+
+select * from orders
+
+-- pilih semua data yang merupakan transaksi di kota Los Angeles
+-- kutip 1 (') untuk nilai literal atau teks
+-- kutip 2 (") untuk kolom customer_id Customer ID
+
+select * from orders where city = 'Los Angeles'
+
+-- pilih semua transaksi yang salesnya di atas 100 dollar
+select * from orders where sales > 100
+
+-- pilih semua transaksi yang merugikan
+select * from orders where profit < 0
+
+-- gimana kalau kita mau memfilter dengan banyak kondisi?
+
+-- menampilkan transaksi yang merugikan di kota Los Angeles
+
+-- MENGGUNAKAN OPERATOR LOGIKA -> AND, OR, NOT
+
+-- PENGAPLIKASIAN OPERATOR DAN
+-- Contoh:
+-- Orang mendapatkan bantuan pemerintah jika -> Gaji di bawah umr DAN WNI
+-- Orang 1: gaji di bawah umr tapi dia orang rusia? ga dapet BLT
+-- Orang 2: WNI sebagai data analyst yg gajinya 2x umr?
+-- Gaji DA freshgrad? UMR plus dikit
+-- TAPIIIIIIIIIIIIIIIIIIII di tahun ke 2 -> 1.5 sd 2x UMR
+
+-- tampikan transaksi yang merugikan di kota los angeles
+
+SELECT * from orders where city = 'Los Angeles' AND profit < 0
+
+-- OR
+-- Tolong kamu ke minimarket, kalau ada kola atau sprata beli salah satu
+-- ada kola, ada sprata -> beli
+-- kola, ngga ada sprata -> beli
+-- kola dan sprata ngga ada -> ga beli ->
+
+-- menampilkan trasaksi yang untuk segment customer atau corporate
+select * from orders where segment = 'Consumer' OR segment = 'Corporate'
+
+-- kondisi lebih dari 3
+-- tampilkan transaksi yang merugikan di kota los angeles dari segment konsumen Consumer
+
+select
+	*
+from
+	orders
+where
+	profit < 0 and
+	city ='Los Angeles' and
+	segment = 'Consumer'
+	
+-- tampikan transaksi yang ada di kota Los Angeles, henderson, dan Houston
+select * from orders where city ='Los Angeles' and city ='Henderson' and city = 'Houston'
+
+select * from orders where city ='Los Angeles' or city ='Henderson' or city = 'Houston'
+
+-- Operator IN untuk menyederhanakan OR berantai
+select * from orders where city IN ('Los Angeles', 'Henderson', 'Houston')
+
+-- transaksi yang merugikan di ketiga kota tersebut
+select
+	*
+from
+	orders
+where
+	city IN ('Los Angeles', 'Henderson', 'Houston') and
+	profit < 0
+
+-- NOT -> bukan/tidak
+select * from orders where not city ='Los Angeles'
+-- tampikan semua transaksi yang terjadi kecuali di kota los angeles
+
+-- >, <, >=, <=, =, != berlaku untuk numerik, tanggal juga bisa, teks (lexicogrammatical) 
+
+-- menampilkan semua transaksi yang terjadi setelah tanggal 1 maret 2019
+select * from orders where order_date > '2019-03-01'
