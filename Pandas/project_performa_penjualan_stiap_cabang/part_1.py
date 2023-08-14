@@ -10,7 +10,7 @@ retail_data4 = pd.read_csv('retail_data_from_10_until_12_reduce.csv')
 # [2]. Pengecekan Data
 print('PENGECEKAN DATA\n\n')
 #      Cek data sekilas (tampilkan 5 baris teratas)
-print(retail_data1.head(15)))
+print(retail_data1.head(15))
 #      Cek list kolom untuk semua dataframe
 print('Kolom retail_data1: %s' %retail_data1.columns)
 print('Kolom retail_data2: %s' %retail_data2.columns)
